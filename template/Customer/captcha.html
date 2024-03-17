@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA Example</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .captcha-container {
+            text-align: center;
+            margin-top: 50px;
+            font-family: 'Arial', sans-serif;
+        }
+        .captcha-card {
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .captcha-img {
+            padding: 20px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ffa500, #ffd700); /* Gradient background */
+            font-size: 28px;
+            color: #fff;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); /* Text shadow */
+           
+        .refresh-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+        }
+        .form-control {
+            padding-right: 45px; /* Adjust for the icon */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="captcha-container">
+                    <div class="card captcha-card">
+                        <div class="card-body position-relative">
+                            <h5 class="card-title">CAPTCHA</h5>
+                            <div class="captcha-img" id="captcha-img">
+                                <!-- CAPTCHA will be displayed here -->
+                            </div>
+                            <i class="fas fa-sync-alt refresh-icon" onclick="refreshCaptcha()"></i> <!-- Refresh icon -->
+                            <input type="text" id="captcha-input" class="form-control mt-2" placeholder="Enter CAPTCHA">
+                            <button class="btn btn-danger mt-2" onclick="checkCaptcha()">Placed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+    <!-- Custom JavaScript -->
+   <!-- Custom JavaScript -->
+   <script>
+    // Generate random CAPTCHA code
+    function generateCaptcha() {
+        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let length = 6;
+        let captcha = '';
+        for (let i = 0; i < length; i++) {
+            let index = Math.floor(Math.random() * chars.length);
+            captcha += chars[index];
+        }
+        return captcha;
+    }
+
+    // Display CAPTCHA in the HTML element
+    function displayCaptcha(captcha) {
+        document.getElementById('captcha-img').innerText = captcha;
+    }
+
+    // Refresh CAPTCHA
+    function refreshCaptcha() {
+        let captcha = generateCaptcha();
+        displayCaptcha(captcha);
+    }
+
+    // Check if the entered value matches the CAPTCHA
+    function checkCaptcha() {
+        let captcha = document.getElementById('captcha-img').innerText;
+        let userInput = document.getElementById('captcha-input').value;
+        if (userInput.toLowerCase() === captcha.toLowerCase()) {
+            // CAPTCHA Matched! Proceed to order placed
+            window.location.href = '/order_placed';  // Update the URL here
+        } else {
+            alert('CAPTCHA Incorrect! Please try again.');
+            // Refresh CAPTCHA after checking
+            refreshCaptcha();
+        }
+    }
+
+    // Initialize CAPTCHA on page load
+    window.onload = function() {
+        let captcha = generateCaptcha();
+        displayCaptcha(captcha);
+        // Listen for Enter key press
+        document.getElementById('captcha-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkCaptcha();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offer Cards</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px; /* Add some padding for better spacing */
+    }
+
+    .offer-card {
+      width: 300px;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 20px;
+    }
+
+    .discount-message {
+      font-size: 22px; /* Increased text size */
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .discount-info {
+      font-size: 16px; /* Increased text size */
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .coupon-code {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f8f9fa;
+      margin-bottom: 10px;
+    }
+
+    #couponCode {
+      flex: 1;
+      margin-right: 10px;
+      font-size: 18px; /* Increased text size */
+    }
+
+    #copyButton {
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 16px; /* Increased text size */
+    }
+
+    #copySuccess {
+      color: green;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="offer-card">
+    <div class="discount-message">
+      Get ₹100 Off!
+    </div>
+    <div class="discount-info">
+      Buy above ₹999 and get ₹100 discount!
+    </div>
+    <div class="coupon-code">
+      <span id="couponCode">GVIT@100</span>
+      <button id="copyButton" onclick="copyCouponCode()">Copy</button>
+    </div>
+    <div id="copySuccess">
+      Coupon code copied!
+    </div>
+  </div>
+
+  <div class="offer-card" id="deliveryOfferCard">
+    <div class="discount-message">
+      Enjoy Free Delivery!
+    </div>
+    <div class="discount-info">
+      Free delivery for orders above ₹599!
+    </div>
+  </div>
+
+  <a href="{% url 'cart_view' %}" class="btn btn-danger">Back To Cart</a>
+
+
+  <script>
+    function copyCouponCode() {
+      var couponCodeElement = document.getElementById("couponCode");
+      var range = document.createRange();
+      range.selectNode(couponCodeElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+
+      try {
+        var successful = document.execCommand("copy");
+        if (successful) {
+          document.getElementById("copySuccess").style.display = "block";
+          setTimeout(function () {
+            document.getElementById("copySuccess").style.display = "none";
+          }, 2000);
+        }
+      } catch (err) {
+        console.error("Unable to copy", err);
+      }
+
+      window.getSelection().removeAllRanges();
+    }
+  </script>
+
+</body>
+
+</html>

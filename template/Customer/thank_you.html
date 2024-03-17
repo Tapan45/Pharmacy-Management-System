@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Pharmative &mdash; Colorlib Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    /* Custom Styles */
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .site-wrap {
+      background-color: #f8f9fa;
+    }
+
+    .site-section {
+      padding: 80px 0;
+    }
+
+    .text-primary {
+      color: #28a745 !important; /* Success color */
+    }
+
+    .icon-check_circle {
+      font-size: 100px;
+    }
+
+    .icon-custom {
+      width: 100px;
+      height: 100px;
+      display: block;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .success-animation {
+      animation: bounceInDown 1s ease-out; /* Animation effect */
+    }
+
+    @keyframes bounceInDown {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div class="success-animation">
+          <img src="https://clipart-library.com/images/Lcd5doyqi.png" alt="Custom Icon" class="icon-custom">
+          <span class="icon-check_circle display-3 text-primary"></span>
+        </div>
+        <h2 class="display-3 text-black">Thank you!</h2>
+        <p class="lead mb-5">Your order was successfully completed.</p>
+        <p><a href="{% url 'order_status' %}" class="btn btn-md height-auto px-4 py-3 btn-primary">Back to My Order</a></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

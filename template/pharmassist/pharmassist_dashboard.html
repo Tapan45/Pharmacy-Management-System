@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pharmacist Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://kit.fontawesome.com/your-font-awesome-kit-id.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!-- Font Awesome CDN -->
+  <style>
+    /* Add your custom styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card {
+      width: calc(20% - 20px); /* 20% width with 20px margin */
+      margin: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card-icon {
+      font-size: 40px;
+      margin-right: 20px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .pharmacist-img {
+      max-width: 80px;
+      border-radius: 50%;
+    }
+
+    #medicineChart {
+      margin-top: 20px;
+    }
+
+    .navbar {
+      background-color: white; /* Updated navbar background color to white */
+      color: black; /* Text color for better visibility on the white background */
+    }
+  
+    .navbar-brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  
+    .navbar-nav {
+      margin-left: auto;
+    }
+  
+    .nav-link {
+      color: black; /* Text color for better visibility on the white background */
+    }
+  
+    .nav-link:hover {
+      color: red; /* Change color on hover */
+    }
+  
+    .dropdown-menu {
+      background-color: white; /* Updated dropdown menu background color to white */
+    }
+  
+    .dropdown-item {
+      color: black; /* Text color for better visibility on the white background */
+    }
+  
+    .dropdown-item:hover {
+      background-color:yellow; /* Change background color on hover */
+    }
+
+    .custom-dropdown .dropdown-menu {
+      width: 300px !important; /* Adjust the width as needed */
+      max-height: 200px !important; /* Adjust the max-height as needed */
+      overflow-y: auto;
+    }
+
+    
+    
+  </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjY8C3I_jseOzhkXjqTHxB8FkAs8GATMTirH7P3Ks5L8ZfGTxaWrAGV6dWfQ&s" width="70" alt="Logo"></a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="medicineDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Medicine Manage
+        </a>
+        <div class="dropdown-menu" aria-labelledby="medicineDropdown">
+          <a class="dropdown-item" href="{% url 'add_medicine' %}">Add Medicine</a>
+          <a class="dropdown-item" href="{% url 'view_medicine' %}">Medicine List</a>
+          <a class="dropdown-item" href="#">Update Medicine</a>
+        </div>
+      </li>
+    </ul>
+
+
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="medicineDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Purchase
+        </a>
+        <div class="dropdown-menu" aria-labelledby="medicineDropdown">
+          <a class="dropdown-item" href="">Purchase medicine</a>
+          
+        </div>
+      </li>
+    </ul>
+
+
+   
+
+
+
+
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sales Medicine
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'create_sales' %}">Create Sales</a>
+          <a class="dropdown-item" href="{% url 'view_prescription' %}">Prescription Lists</a>
+        </div>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pharmacist Username
+        </a>
+        <div class="dropdown-menu" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">Attendace</a>
+          <a class="dropdown-item" href="{% url 'create_holidays' %}">Holidays</a>
+          <a class="dropdown-item" href="{% url 'salary_slip' %}">Salary Bill</a>
+          <a class="dropdown-item" href="{% url 'change_password' %}">Password Change</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div>
+        <div class="card-title">Total Customers</div>
+        <div>1200</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="card-icon">
+        <i class="fas fa-medkit"></i>
+      </div>
+      <div>
+        <div class="card-title">Total Medicines</div>
+        <div>500</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="card-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div>
+        <div class="card-title">Total Sales</div>
+        <div>$50,000</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="card-icon">
+        <i class="fas fa-flask"></i>
+      </div>
+      <div>
+        <div class="card-title">Medicine Stock</div>
+        <div>300</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bar Chart -->
+<div class="container">
+  <canvas id="medicineChart" width="400" height="200"></canvas>
+</div>
+
+<!-- Bootstrap JS and Popper.js (Required for Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // Sample data for the bar chart
+  var medicineData = {
+    labels: ['Valid', 'Expired'],
+    datasets: [{
+      label: 'Medicine Validity',
+      backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+      borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+      borderWidth: 1,
+      data: [80, 20] // Adjust these values based on your actual data
+    }]
+  };
+
+  // Get the canvas element
+  var ctx = document.getElementById('medicineChart').getContext('2d');
+
+  // Create the bar chart
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: medicineData,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
