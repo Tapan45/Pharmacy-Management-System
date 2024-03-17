@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Test Cards</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .card {
+            margin: 10px;
+        }
+
+        .card img {
+            max-height: 100px; /* Set a max height for the images */
+            margin-bottom: 10px;
+        }
+        .lab-form-wrap {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #242b67;
+            text-align: center;
+        }
+
+        .form-input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .button-wrapper {
+            text-align: center;
+        }
+
+        .lab_submit {
+            background-color: #24aeaf;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .lab_submit:hover {
+            background-color: #1a7d7e;
+        }
+
+        .agree {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdXPKIOf_B8f8nFznYlRfVaVkbMc0iL3QGtA&usqp=CAU" class="card-img-top" alt="Cholesterol Test Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Cholesterol Test</h5>
+                        <p style="color: #007bff; font-size: 18px;">Price = 210/-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="data:image/jpeg;base64,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" class="card-img-top" alt="Kidney Test Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Kidney Test</h5>
+                        <p style="color: #007bff; font-size: 18px;">Price = 250/-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="data:image/jpeg;base64,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" class="card-img-top" alt="Liver Function Test Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Liver Function Test</h5>
+                        <p style="color: #007bff; font-size: 18px;">Price = 230/-</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ542_oxI5izb4JeE-JOhuhgSaQ7LyLAHLh7Q&usqp=CAU" class="card-img-top" alt="Thyroid Test Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Thyroid Test</h5>
+                        <p style="color: #007bff; font-size: 18px;">Price = 180/-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    
+    <div class="lab-form-wrap">
+        <h2>Lab Test Booking</h2>
+      
+
+        <form action="{% url 'lab_test' %}" method="post">
+          {% csrf_token %}
+            <div class="form-input-group">
+                <label for="name-input">Name</label>
+                <input type="text" id="name-input" maxlength="50" name="lab_name" class="form-control"
+                    aria-describedby="name-input-error" aria-invalid="false" required>
+                <div id="name-input-error" class="form_error" style="display: none;"></div>
+            </div>
+
+            <div class="form-input-group">
+                <label for="mobile-input">Mobile Number</label>
+                <input type="tel" name="lab_mobile" maxlength="10" onkeypress="return isNumber(event);"
+                    class="form-control" aria-describedby="lab_mobile-error" required>
+                <div id="lab_mobile-error" class="form_error" style="display: none;"></div>
+            </div>
+
+            <div class="form-input-group">
+                <label for="pincode-input">PINCODE</label>
+                <input type="text" name="lab_pincode" maxlength="6" onkeypress="return isNumber(event);"
+                    class="form-control" aria-describedby="lab_pincode-error" required>
+                <div id="lab_pincode-error" class="form_error" style="display: none;"></div>
+            </div>
+
+            <div class="form-input-group">
+                <label for="test-select">Choose Test</label>
+                <select id="test-select" name="lab_test" class="form-control" required>
+                    <option value="">Select Test</option>
+                    <option value="Blood Test">Blood Test</option>
+                    <option value="Urine Test">Urine Test</option>
+                    <option value="X-ray">X-ray</option>
+                    <!-- Add more options here -->
+                </select>
+                <div id="test-select-error" class="form_error" style="display: none;"></div>
+            </div>
+
+            <div class="agree">
+                <input type="checkbox" style="vertical-align: middle;" id="terms" class="form-check-input"
+                    name="terms" aria-describedby="terms-error" value="on" required>
+                    <a href="#termsAndConditions" style="text-decoration: none;">
+                        I agree to the <strong>Terms and Conditions</strong>
+                    </a>
+                <div id="terms-error" class="form_error" style="display: none;"></div>
+            </div>
+            
+            <div class="button-wrapper">
+                <input type="submit" class="lab_submit" value="BOOK NOW">
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap J
+
+    <!-- Bootstrap JS and Popper.js CDN (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

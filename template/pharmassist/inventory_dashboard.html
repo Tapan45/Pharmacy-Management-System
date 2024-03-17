@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+   
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #dashboard-header {
+            background-color: #343a40;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+
+        #company-logo {
+            max-width: 150px;
+            max-height: 50px;
+        }
+        .sidebar-item {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:blue;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 250px;
+}
+
+.sidebar-item:hover .dropdown-content {
+    display: block;
+}
+/* Add this CSS at the end of your existing styles */
+#sidebar a:hover, .dropdown-content a:hover {
+    background-color: #333; /* Change the background color on hover */
+}
+
+#sidebar a:hover i, .dropdown-content a:hover i {
+    color: #fff; /* Change the text color on hover */
+}
+
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+     background-color:white;
+}
+
+      #sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adjusted box-shadow property */
+}
+
+
+        #sidebar a {
+            padding: 15px 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        #sidebar a:hover {
+            background-color: #333;
+            color: #fff;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Keep the same shadow on hover */
+        }
+
+        #sidebar a i {
+            margin-right: 10px;
+        }
+
+        #content {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            margin-left: 250px;
+            transition: margin-left 0.5s;
+            text-align: center;
+        }
+
+        #content h2 {
+            color: #343a40;
+        }
+
+        #right-image {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: 20px auto;
+        }
+
+        #toggle-btn {
+            font-size: 24px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 270px;
+            z-index: 2;
+            color: #fff;
+            background-color: #343a40; /* Add this line to set the background color */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .counter {
+                background-color: red;
+                color: white;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+              }
+        
+    </style>
+</head>
+<body>
+
+    
+
+<div id="sidebar">
+    <div id="dashboard-header">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjY8C3I_jseOzhkXjqTHxB8FkAs8GATMTirH7P3Ks5L8ZfGTxaWrAGV6dWfQ&s" width="80" alt="Logo">
+    </div>
+
+    <div class="sidebar-item" id="dashboard">
+        <a href="{% url 'dashboard' %}">
+            <i class="fas fa-tachometer-alt"></i>Dashboard
+        </a>
+    </div>
+    
+    <div class="sidebar-item" id="dashboard">
+        <a href="{% url 'order_request' %}">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="orderCounter" class="counter">0</span>
+            Order Request
+
+
+            <!-- Counter -->
+            
+        </a>
+    </div>
+
+
+
+    <div class="sidebar-item" id="medicine">
+        <a href="#">
+            <i class="fas fa-pills"></i>Medicine
+            <div class="dropdown-content">
+                <a href="{% url 'add_medicine' %}">Add Medicine</a>
+                <a href="{% url 'view_medicine' %}">View Medicine</a>
+            </div>
+        </a>
+    </div>
+    
+    <div class="sidebar-item" id="supplier">
+        <a href="#">
+            <i class="fas fa-truck"></i>Supplier
+            <div class="dropdown-content">
+                <a href="{% url 'add_supplier' %}">Add Supplier</a>
+                <a href="{% url 'view_suppliers' %}">View Supplier</a>
+            </div>
+        </a>
+    </div>
+   
+    <div class="sidebar-item" id="purchase">
+        <a href="#">
+            <i class="fas fa-money-bill-wave"></i>Purchase
+            <div class="dropdown-content">
+                <a href="{% url 'add_purchase' %}">Add Purchase</a>
+                <a href="#">View Purchase</a>
+                <a href="#">Return Purchase</a>
+                <a href="#">View Return Purchase</a>
+            </div>
+        </a>
+    </div>
+    <div class="sidebar-item" id="sale">
+        <a href="#">
+            <i class="fas fa-cash-register"></i>Sale
+            <div class="dropdown-content">
+                <a href="{% url 'view_prescription' %}">View Prescription</a>
+                <a href="{% url 'create_sales' %}">Add Sale</a>
+                <a href="#">View Sale</a>
+                <a href="#">Return Sale</a>
+                <a href="#">View Return Sale</a>
+            </div>
+        </a>
+    </div>
+ <div class="sidebar-item" id="service">
+    <a href="#">
+        <i class="fas fa-wrench"></i>Service
+        <div class="dropdown-content">
+            <a href="#">Add Service</a>
+            <a href="#">View Service</a>
+        </div>
+    </a>
+</div>
+
+<div class="sidebar-item" id="manage-client">
+    <a href="#">
+        <i class="fas fa-users"></i>Manage Client
+        <div class="dropdown-content">
+            <a href="{% url 'add_client' %}">Add Client</a>
+            <a href="#">View Client</a>
+        </div>
+    </a>
+</div>
+   <!-- Inside the sidebar div -->
+<div class="sidebar-item" id="master">
+    <a href="#">
+        <i class="fas fa-cogs"></i>Master
+        <div class="dropdown-content">
+            <a href="#">Account Group</a>
+            <a href="#">Account Ledger</a>
+            <a href="#">Voucher Type</a>
+            <a href="#">Currency</a>
+        </div>
+    </a>
+</div>
+
+<div class="sidebar-item" id="transaction">
+    <a href="#">
+        <i class="fas fa-exchange-alt"></i>Transaction
+        <div class="dropdown-content">
+            <a href="#">Journal Voucher</a>
+            <a href="#">Payment Voucher</a>
+            <a href="#">Purchase Voucher</a>
+            <a href="#">Sale Voucher</a>
+            <a href="#">Receipt Voucher</a>
+        </div>
+    </a>
+</div>
+
+   <!-- Inside the sidebar div -->
+<div class="sidebar-item" id="hrms">
+    <a href="#">
+        <i class="fas fa-user-tie"></i>HRMS
+        <div class="dropdown-content">
+            <a href="#">Company</a>
+            <a href="#">Department</a>
+            <a href="#">Designation</a>
+            <a href="#">Office Shift</a>
+            <a href="#">Employee</a>
+            <a href="{% url 'salary_slip' %}">Salary slip</a>
+            <a href="#">Attendance</a>
+            <a href="#">Leave Type</a>
+            <a href="#">Leave Request</a>
+            <a href="{% url 'create_holidays' %}">Holiday</a>
+        </div>
+    </a>
+</div>
+
+<div class="sidebar-item" id="report">
+    <a href="#">
+        <i class="fas fa-file-alt"></i>Report
+        <div class="dropdown-content">
+            <a href="#">Sale Report</a>
+            <a href="#">Purchase Report</a>
+            <a href="#">Sale Ledger Report</a>
+            <a href="#">Purchase Ledger Report</a>
+            <a href="#">Profit & Loss</a>
+            <a href="#">Stock Report</a>
+        </div>
+    </a>
+</div>
+
+    <a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
+    <!-- Add other sidebar links here -->
+</div>
+
+<div id="content">
+    <div id="toggle-btn">&#9776;</div>
+    <h2>Welcome to Inventory Management System</h2>
+    <img id="right-image" src="media\Inventory.png" alt="Right Image">
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script>
+    document.getElementById('toggle-btn').addEventListener('click', function () {
+        var sidebar = document.getElementById('sidebar');
+        var content = document.getElementById('content');
+        var toggleBtn = document.getElementById('toggle-btn');
+        var isVisible = sidebar.style.left === '0px';
+
+        if (isVisible) {
+            sidebar.style.left = '-250px';
+            content.style.marginLeft = '0';
+            toggleBtn.style.left = '20px';
+        } else {
+            sidebar.style.left = '0';
+            content.style.marginLeft = '250px';
+            toggleBtn.style.left = '270px';
+        }
+    });
+</script>
+
+<script>
+    // JavaScript to update the counter
+    let orderCounter = 0; // Initial counter value
+    
+    // Function to update the counter
+    function updateCounter() {
+        orderCounter++;
+        document.getElementById('orderCounter').textContent = orderCounter;
+    }
+    
+    // Call the function to update counter
+    updateCounter(); // Call this whenever you want to increment the counter
+    </script>
+
+</body>
+</html>

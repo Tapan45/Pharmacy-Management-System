@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      white-space: nowrap;
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .card {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.50);
+      background-color: #fff;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .card-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    canvas {
+      margin-top: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .marquee-container {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .marquee {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 15s linear infinite;
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Marquee for Cards -->
+  <div class="marquee-container">
+    <div class="marquee">
+      <!-- Card for Total Customers -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div>
+            <div class="card-title">Total Customers</div>
+            <div>{{ total_customers }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card for Total Medicines -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-medkit"></i>
+          </div>
+          <div>
+            <div class="card-title">Total Medicines</div>
+            <div>{{ total_medicines }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card for Total Sales -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div>
+            <div class="card-title">Total Sales</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-shopping-cart"></i> <!-- Change the icon class here -->
+          </div>
+          <div>
+            <div class="card-title">Total Orders</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+
+      <!-- Card for Medicine Stock -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <div>
+            <div class="card-title">Medicine Stock</div>
+            <div>{{ total_stock }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Cards -->
+      <!-- Card for Total Purchases -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div>
+            <div class="card-title">Total Purchases</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card for Total Clients -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div>
+            <div class="card-title">Total Clients</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card for Total Profit -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div>
+            <div class="card-title">Total Profit</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card for Total Returns -->
+      <div class="card">
+        <div class="card-body">
+          <div class="card-icon">
+            <i class="fas fa-undo-alt"></i>
+          </div>
+          <div>
+            <div class="card-title">Total Returns</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bar Chart -->
+  <div class="container">
+    <canvas id="medicineChart" width="400" height="200"></canvas>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js (Required for Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Sample data for the bar chart
+    var medicineData = {
+      labels: ['Valid', 'Expired'],
+      datasets: [{
+        label: 'Medicine Validity',
+        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+        borderWidth: 1,
+        data: [80, 20] // Adjust these values based on your actual data
+      }]
+    };
+
+    // Get the canvas element
+    var ctx = document.getElementById('medicineChart').getContext('2d');
+
+    // Create the bar chart
+    var myBarChart = new Chart(ctx, {
+      type: 'bar',
+      data: medicineData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
