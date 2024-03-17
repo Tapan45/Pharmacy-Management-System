@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Create Form</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #B0C4DE;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+   
+    .form-container {
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 20px 0 rgba(0, 0, 0, 0.20);
+      background-color: white;
+      border-radius: 5px;
+      color: black;
+      position: relative; /* Added position relative */
+    }
+
+    /* Added logo styles */
+    .logo-container {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .logo-container img {
+      width: 50px; /* Adjust the width as needed */
+      height: auto; /* Maintain aspect ratio */
+    }
+
+    .form-container .card {
+      border: none; /* Remove card border */
+    }
+
+    .form-control {
+      background-color: #f8f9fa;
+      color: #495057;
+      border: none;
+      border-radius: 5px;
+      padding: 8px;
+      height: 38px;
+    }
+
+    label {
+      font-weight: bold;
+      color: black;
+    }
+
+    .input-group-prepend {
+      width: 35px;
+      text-align: center;
+    }
+
+    .input-group-text {
+      background-color: #dee2e6;
+      border: none;
+      color: #495057;
+      border-radius: 5px;
+    }
+
+    .btn-primary {
+      padding: 8px 20px;
+      font-size: 16px;
+      border-radius: 7px;
+    }
+
+    .custom-hover::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(to right, #ff0000, transparent);
+      transition: width 0.3s ease;
+    }
+
+    .custom-hover:hover::before {
+      width: 100%;
+    }
+
+    .custom-outline {
+      border-color: red !important;
+      color: red;
+      font-size: 1rem;
+      padding: 0.430rem 0.75rem;
+      width: 130px; /* Adjust the width as needed */
+      height: 40px; /* Adjust the height as needed */
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container ">
+    <!-- Added logo container -->
+    <div class="logo-container">
+      <img src="YOUR_LOGO_URL" alt="Medical Logo">
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h3 style="text-align: center;">Customer Login</h3>
+       
+        <form id="loginForm" method="post" action="">
+
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="username">Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+              </div>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+              <div class="input-group-append">
+                <span class="input-group-text" onclick="togglePasswordVisibility()">
+                  <i id="eyeIcon" class="fas fa-eye"></i>
+                </span>
+              </div>
+            </div>
+            <div class="mt-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <p><a href="">Forgot password?</a></p>
+                <p class="text-right">New user? <a href="{% url 'customer_create' %}">Register</a></p>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-outline btn-md custom-outline custom-hover position-relative "><strong>Log In</strong></button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script>
+    function togglePasswordVisibility() {
+      var passwordInput = document.getElementById('password');
+      var eyeIcon = document.getElementById('eyeIcon');
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+      }
+    }
+
+    
+    
+    
+  
+  </script>
+
+
+
+
+</body>
+</html>
