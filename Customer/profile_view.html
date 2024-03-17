@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Add Font Awesome for the icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-<checksum>" crossorigin="anonymous" />
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .profile-card {
+      max-width: 400px;
+      margin: 50px auto;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.50);
+    }
+    .card-header {
+      background-color: white;
+      color: black;
+      border-radius: 15px 15px 0 0;
+    }
+    .profile-image {
+      width: 60px; /* Adjust the width of the profile image */
+      height: 60px; /* Adjust the height of the profile image */
+      border-radius: 50%; /* Make the image rounded */
+    }
+    .profile-details {
+      padding: 20px;
+    }
+    .add-image-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .no-image {
+      width: 80px; /* Adjust the size of the no image icon */
+      height: 80px; /* Adjust the size of the no image icon */
+      border-radius: 50%; /* Make the icon rounded */
+      border: 2px solid white;
+      padding: 1px;
+    }
+    .no-image-icon {
+      border-radius: 50%;
+      background-color: white;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.3);
+
+    
+    }
+    
+  </style>
+</head>
+<body>
+
+ <div class="card profile-card">
+  <div class="card-header text-center">
+    <h5>User Profile</h5>
+  </div>
+  <!-- Add conditional logic to show profile image or icon if available -->
+  {% if user_profile.profile_image %}
+    <img class="card-img-top profile-image" src="{{ user_profile.profile_image.url }}" alt="Profile Image">
+  {% else %}
+  <div class="d-flex flex-column align-items-center">
+    <img class="card-img-top no-image" src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png" alt="Default Profile Image">
+    <div class="mt-2">
+      <i id="camera-icon" class="fas fa-camera fa-lg text-secondary" title="Add Profile Image"></i>
+    </div>
+    
+  </div>
+  {% endif %}
+  <div class="card-body profile-details">
+    <p><strong>Name:</strong> {{ user_profile.name }}</p>
+    <p><strong>Username:</strong> {{ user_profile.user.username }}</p>
+    <p><strong>Mobile No:</strong> {{ user_profile.phone }}</p>
+    <p><strong>Email:</strong> {{ user_profile.user.email }}</p>
+    <p><strong>Address:</strong> {{ user_profile.address }}</p>
+    <button class="add-image-btn">Edit</button>
+  </div>
+</div>
+
+  <!-- Video element to display the camera stream -->
+<video id="camera-stream" autoplay playsinline style="display: none;"></video>
+
+<!-- Button to capture an image -->
+<button id="capture-button" class="btn btn-primary" style="display: none;">Capture</button>
+
+<!-- Canvas element to display the captured image -->
+<canvas id="captured-image" style="display: none;"></canvas>
+
+<!-- Form to submit the captured image -->
+<form id="capture-form" method="POST" action="">
+  {% csrf_token %}
+  <input type="hidden" id="image-data" name="image_data">
+  <button type="submit" class="btn btn-success" style="display: none;">Save Profile Image</button>
+</form>
+
+<script>
+document.getElementById('camera-icon').addEventListener('click', function() {
+  // Check if the browser supports getUserMedia
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Request access to the user's camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        // Display the camera stream in the video element
+        var video = document.getElementById('camera-stream');
+        video.srcObject = stream;
+        video.style.display = 'block'; // Show the video element
+        
+        // Show the capture button
+        document.getElementById('capture-button').style.display = 'inline-block';
+      })
+      .catch(function(error) {
+        console.error('Error accessing the camera:', error);
+      });
+  } else {
+    console.error('getUserMedia is not supported in this browser');
+  }
+});
+
+document.getElementById('capture-button').addEventListener('click', function() {
+  // Get the video and canvas elements
+  var video = document.getElementById('camera-stream');
+  var canvas = document.getElementById('captured-image');
+  
+  // Set the canvas dimensions to match the video
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  
+  // Draw the current frame from the video onto the canvas
+  var context = canvas.getContext('2d');
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  
+  // Show the captured image and form
+  canvas.style.display = 'block';
+  document.getElementById('capture-form').style.display = 'block';
+  
+  // Convert the canvas image to base64 data
+  var imageData = canvas.toDataURL('image/png');
+  
+  // Set the base64 image data as the value of the hidden input field
+  document.getElementById('image-data').value = imageData;
+});
+</script>
+  
+</body>
+</html>
