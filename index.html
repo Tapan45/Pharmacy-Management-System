@@ -185,9 +185,9 @@
                         Login
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Admin</a>
-                        <a class="dropdown-item" href="#">Employee</a>
-                        <a class="dropdown-item" href="{% url 'customer_login' %}">Customer</a>
+                        <a class="dropdown-item" href="{% url 'admin_login' %}">Admin</a>
+                        <a class="dropdown-item" href="#">Pharmacist</a>
+                        <a class="dropdown-item" href="customer_login">Customer</a>
                     </div>
                 </li>
             </ul>
@@ -212,64 +212,61 @@
 
 
 
-<section class="container mt-5 about-section">
-  <div class="row">
-    <div class="col-lg-8 d-flex align-items-center justify-content-center"> <!-- Updated classes: d-flex, align-items-center -->
-      <div class="card about-card">
-        <div class="card-body text-center">
-          <h2 class="card-title mb-4">About Our Pharmacy Store</h2>
-          <p class="card-text">Welcome to [Your Pharmacy Name], your trusted neighborhood pharmacy. We are dedicated to providing high-quality pharmaceutical services and healthcare products to our community.</p>
-          <p class="card-text">At [Your Pharmacy Name], we prioritize your health and well-being. Our team of experienced pharmacists is committed to offering personalized care and guidance on your medications, ensuring you have a clear understanding of your prescriptions.</p>
-          <p class="card-text">Key features of our pharmacy:</p>
-          <ul class="list-unstyled">
-            <li>Wide range of prescription medications and over-the-counter products</li>
-            <li>Friendly and knowledgeable staff ready to assist you</li>
-            <li>Convenient location with easy access and parking</li>
-            <li>Fast and accurate prescription filling services</li>
-            <li>Health and wellness resources for our community</li>
-          </ul>
-        </div>
+<div class="row mt-3">
+  <div class="col-lg-8 mx-auto">
+    <div class="card about-card">
+      <div class="card-body text-center">
+        <h2 class="card-title mb-4">About Our Pharmacy Store</h2>
+        <p class="card-text">Welcome to [Your Pharmacy Name], your trusted neighborhood pharmacy. We are dedicated to providing high-quality pharmaceutical services and healthcare products to our community.</p>
+        <p class="card-text">At [Your Pharmacy Name], we prioritize your health and well-being. Our team of experienced pharmacists is committed to offering personalized care and guidance on your medications, ensuring you have a clear understanding of your prescriptions.</p>
+        <p class="card-text">Key features of our pharmacy:</p>
+        <ul class="list-unstyled">
+          <li>Wide range of prescription medications and over-the-counter products</li>
+          <li>Friendly and knowledgeable staff ready to assist you</li>
+          <li>Convenient location with easy access and parking</li>
+          <li>Fast and accurate prescription filling services</li>
+          <li>Health and wellness resources for our community</li>
+        </ul>
       </div>
     </div>
-    <div class="col-lg-4">
-      <!-- You can add an image or additional content here if needed -->
-    </div>
   </div>
-</section>
-
-
-
-  <div class="site-section py-5 aos-init aos-animate" data-aos="fade">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="text-black h4">Why Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem assumenda, delectus. Amet repellendus quidem, fugiat.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="text-black h4">History</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda iste aut, ut similique nobis ab?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="text-black h4">Awards</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nisi magni in fugit, ad laudantium.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-<br>
+
+
+
+
+
+
+<div class="site-section py-5 aos-init aos-animate" data-aos="fade">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-4 mb-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h3 class="text-black h4">Why Us</h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem assumenda, delectus. Amet repellendus quidem, fugiat.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h3 class="text-black h4">History</h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda iste aut, ut similique nobis ab?</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+              <div class="card">
+                  <div class="card-body">
+                      <h3 class="text-black h4">Awards</h3>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae nisi magni in fugit, ad laudantium.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 
 
 <div id="medicineCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -372,61 +369,46 @@
   </a>
 </div>
 
-<section id="getInTouch" class="container mt-5 about-section">
 
-  <div class="site-section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="h3 mb-5 text-black">Get In Touch</h2>
-        </div>
-        <div class="col-md-12">
-  
-          <form action="#" method="post">
-  
-            <div class="p-3 p-lg-5 border">
-              <div class="form-group row">
-                <div class="col-md-6">
-                  <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_fname" name="c_fname">
-                </div>
-                <div class="col-md-6">
-                  <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_lname" name="c_lname">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
-                  <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <label for="c_subject" class="text-black">Subject </label>
-                  <input type="text" class="form-control" id="c_subject" name="c_subject">
-                </div>
-              </div>
-  
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <label for="c_message" class="text-black">Message </label>
-                  <textarea name="c_message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-lg-12">
-                  <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message">
-                </div>
-              </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="h3 mb-2 mt-2 text-black text-center">Get In Touch</h2>
             </div>
-          </form>
+            <div class="col-md-12">
+                <form action="#" method="post">
+                    <div class="p-3 p-lg-5 border shadow-sm">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="c_fname" name="c_fname">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="c_lname" name="c_lname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="c_subject" class="text-black">Subject </label>
+                            <input type="text" class="form-control" id="c_subject" name="c_subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="c_message" class="text-black">Message </label>
+                            <textarea name="c_message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        
-      </div>
     </div>
-  </div>
-</section>
+
 
 
   <div class="site-section bg-light">
@@ -485,7 +467,7 @@
             <h3 class="footer-heading mb-4">Contact Info</h3>
             <ul class="list-unstyled">
               <li class="address">Bhubaneswar</li>
-              <li class="phone"><a href="tel://23923929210">6370493817</a></li>
+              <li class="phone">6370493817</a></li>
               <li class="email">tpan684@gmail.com</li>
             </ul>
           </div>
@@ -498,7 +480,7 @@
   </footer>
 </div>
 
-
+<br>
 
 
   <footer class="container-fluid fixed-bottom bg-dark text-light p-3">
@@ -507,20 +489,20 @@
         <p>&copy; 2024 | Developed by : Tapan</p>
       </div>
       <div class="col-md-6 text-right">
-        <a href="#" class="text-light mx-2" style="text-decoration: none; transition: color 0.3s, box-shadow 0.3s; border-radius: 50%; overflow: hidden;"
-            onmouseover="this.style.color='#007BFF'; this.style.boxShadow='0 0 10px rgba(0, 123, 255, 0.50)'"
+        <a href="#" class="text-light mx-2" style="text-decoration: none; transition: color 0.1s, box-shadow 0.10s; border-radius: 50%; overflow: hidden;"
+            onmouseover="this.style.color='#007BFF'; this.style.boxShadow='0 0 20px rgba(0, 123, 255, 0.90)'"
             onmouseout="this.style.color=''; this.style.boxShadow='';">
             <i class="fa-brands fa-facebook"></i>
         </a>
     
         <a href="#" class="text-light mx-2" style="text-decoration: none; transition: color 0.3s, box-shadow 0.3s; border-radius: 50%; overflow: hidden;"
-            onmouseover="this.style.color='black'; this.style.boxShadow='0 0 10px rgba(0, 0, 0, 0.50)'"
+            onmouseover="this.style.color='black'; this.style.boxShadow='0 0 20px rgba(0, 0, 0, 0.50)'"
             onmouseout="this.style.color=''; this.style.boxShadow='';">
             <i class="fa-brands fa-x-twitter"></i>
         </a>
     
         <a href="#" class="text-light mx-2" style="text-decoration: none; transition: color 0.3s, box-shadow 0.3s; border-radius: 50%; overflow: hidden;"
-            onmouseover="this.style.color='#E1306C'; this.style.boxShadow='0 0 10px rgba(225, 48, 108, 0.50)'"
+            onmouseover="this.style.color='#E1306C'; this.style.boxShadow='0 0 20px rgba(225, 48, 108, 0.50)'"
             onmouseout="this.style.color=''; this.style.boxShadow='';">
             <i class="fa-brands fa-instagram"></i>
         </a>
